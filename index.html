@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YANKEE CANDLE</title>
+     <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/jquery.bxslider.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/ef20572bd9.js" crossorigin="anonymous"></script>
+    <script src="script/main.js"></script>
+    <script src="script/jquery-1.11.3.min.js"></script>
+    <script src="script/owl.carousel.min.js"></script>
+    <script src="script/jquery.bxslider.min.js"></script>
+    <script>
+    $(function(){
+      $(".toggle").click(function(){
+        $("nav").toggleClass("on");
+          });
+        
+        
+    $(window).resize(function(){
+                
+    w = $(window).width(); 
+    console.log("실시간 화면너비 : " + (w + 16));
+                
+        if ( (w + 16) >= 761 ) {  // PC
+                
+    $(".gnb>li").unbind();
+
+    $(".gnb>li").bind({
+        "mouseenter" : function(){
+    $(this).children(".sub_menu").stop().slideDown();
+            },
+        "mouseleave" : function(){
+    $(this).children(".sub_menu").stop().slideUp();
+            }
+        });
+                
+                
+        } else { 
+
+    $(".gnb>li").unbind();//모든 이벤트 제거
+
+    $(".gnb>li").bind("click", function(){
+$(this).children(".sub_menu").stop().slideToggle();
+        });
+
+    } 
+               
+});  
+        
+    $(window).resize(); 
+    //페이지 로딩되면 무조건 한번은 실행
+
+        
+        
+        $(".bxslider").bxSlider({
+            auto: true,
+            speed: 500,
+            pager: true, /*도트*/
+            controls: true, /*화살표버튼*/
+            tickerHover: true,
+            captions: false,
+            autoHover: true
+        });
+        
+        $(".owl-carousel").owlCarousel({
+
+        items: 4,
+        loop: false,
+        autoplay: false,
+        autoplaySpeed: 500, // 애니메이션 속도
+        slideSpeed: 2000, 
+        dots: true,
+        nav: true, 
+        responsive:{ 
+            0:{ 
+             items:1 
+            },
+            600:{
+             items:2 
+            }, 
+            1000:{ 
+             items:4
+            }
+        }
+
+        }); 
+        
+        
+        $("i.fa-heart").click(function(){
+             if($(this).hasClass("on")){
+                $(this).removeClass("on");
+                
+             }else{
+                $(this).addClass("on");
+                alert("장바구니에 담았습니다");
+            
+            }
+            
+        });
+        
+        
+        $("#top").hide();
+        $(window).scroll(function(){
+            let sT = $(scroll).scrollTop();
+            console.log(sT);
+            
+            if ( sT > 500) {
+                $("#top").stop().fadeIn();
+            } else {
+                $("#top").stop().fadeOut();
+            }
+        });
+        
+        $(".con4_img li img").click(function(){
+            let num = $(this).parent("li").index(); 
+           
+           let img = $(this).attr("src");
+           let name = $(this).attr("alt");
+           console.log(img, name);
+           $("#popup").fadeIn(500);
+           $(".modal .left").css("background-image", "url("+img+")");
+           $("#popup r_sub p").text(name);
+            
+       
+        
+         $(".fa-chevron-right").click(function(){
+            num++;
+            if( num > 4){ num = 0};
+            $(".modal .left").css("background-image", "url(images/instagram"+(num+1)+".jpg)");
+        });
+            
+            
+         $(".fa-chevron-left").click(function(){
+            num--;
+            if( num < 0 ){ num = 4};
+            let previmg = "url(images/instagram"+(num+1)+".jpg)";
+                
+            $(".modal .left").css("background-image", previmg);   
+            
+    }); 
+        
+        
+       
+        
+        
+    });
+         $(".close").click(function(){
+            $("#popup").fadeOut();
+        });
+        
+      });  
+        
+
+   </script>
+
+</head>
+<body>
+  <div id="wrap">
+      <header>
+        <div class="inner clear">
+          <h1 class="logo"><a href="index.html">
+           <img src="images/main_logo.png" alt="메인로고"></a>
+          </h1>
+           <div class="toggle">
+             <span></span>
+             <span></span>
+             <span></span>
+           </div>
+          <ul class="top_menu clear">
+              <li><a href="#">
+                <img src="images/search.jpg" alt="검색">
+              </a></li>
+              <li><a href="#">
+                <img src="images/person.png" alt="내정보">
+              </a></li>
+              <li><a href="#">
+                <img src="images/shopping.jpg" alt="장바구니">
+              </a></li>
+          </ul>
+        </div>
+      </header>
+      <nav>
+        <div class="inner">
+          <ul class="gnb clear">
+            <li><a href="#">캔들<span>+</span></a>
+             <ul class="sub_menu">
+               <li><a href="#">메종베르제</a></li>
+               <li><a href="#">자캔들</a></li>
+               <li><a href="#">타트왁스&버너</a></li>
+               <li><a href="#">티라이트</a></li>
+             </ul>
+            </li>
+            <li><a href="#">캔들워머<span>+</span></a>
+             <ul class="sub_menu">
+               <li><a href="#">캔들워머</a></li>
+             </ul>
+            </li>
+            <li><a href="#">디퓨저<span>+</span></a>
+             <ul class="sub_menu">
+               <li><a href="#">리드디퓨저</a></li>
+               <li><a href="#">아로마오일&디퓨저</a></li>
+               <li><a href="#">프래그런스 오일</a></li>
+               <li><a href="#">디퓨저용 스틱&조명</a></li>
+               <li><a href="#">매종베르제 디퓨저</a></li>
+             </ul>
+            </li>
+            <li><a href="#">차량용.악세사리<span>+</span></a>
+             <ul class="sub_menu">
+               <li><a href="#">메종베르제 차 디퓨저</a></li>
+               <li><a href="#">룸 스프레이</a></li>
+               <li><a href="#">악세사리</a></li>
+             </ul>
+            </li>
+            <li><a href="#">선물세트<span>+</span></a>
+             <ul class="sub_menu">
+              <li><a href="#">가격별 선물세트</a></li>
+             </ul>
+             </li>
+          </ul>
+        </div>
+      </nav>
+      <div id="slider">
+        <ul class="bxslider">
+            <li class="s1">
+             <div class="txtbox">
+              <h3 class="stitle">THIS SPRING,</h3>
+              <h2 class="mtitle">YANKEE CANDLE</h2>
+              <button class="sbtn">view</button>
+             </div>
+            </li>
+            <li class="s2">
+              <div class="txtbox">
+              <h3 class="stitle">THIS SPRING,</h3>
+              <h2 class="mtitle">YANKEE CANDLE</h2>
+              <button class="sbtn">view</button>
+             </div>
+            </li>
+            <li class="s3">
+              <div class="txtbox">
+              <h3 class="stitle">THIS SPRING,</h3>
+              <h2 class="mtitle">YANKEE CANDLE</h2>
+              <button class="sbtn">view</button>
+             </div>
+            </li>
+        </ul>
+      </div>
+      <div id="content">
+        <section class="con1">
+          <h2 class="title">Best Sellers</h2>
+          <div class="inner">
+          <ul class="bxslider2 clear owl-carousel">
+            <li><a href="#"><img src="images/best_01.jpg" alt="클린코튼"></a>
+            <i class="fas fa-heart"></i>
+            <div class="con1_txtbox">
+            <h3 class="b_title">클린코튼 (Clean Cotton)</h3>
+            <p class="price">15,000₩</p>
+            </div>
+            </li>
+            <li><a href="#"><img src="images/best_02.jpg" alt="허리케인 브론즈 + 자캔들(대)세트"></a>
+            <i class="fas fa-heart"></i>
+            <div class="con1_txtbox">
+            <h3 class="b_title">허리케인 브론즈 + 자캔들(대)세트</h3>
+            <p class="price">84,000₩</p>
+            </div>
+            </li>
+            <li><a href="#"><img src="images/best_03.jpg" alt="Lemon Mint Leaf"></a>
+            <i class="fas fa-heart"></i>
+            <div class="con1_txtbox">
+            <h3 class="b_title">Lemon Mint Leaf</h3>
+            <p class="price">28,000₩</p>
+            </div>
+            </li>
+            <li><a href="#"><img src="images/best_04.jpg" alt="Vanilla & peach"></a>
+            <i class="fas fa-heart"></i>
+            <div class="con1_txtbox">
+            <h3 class="b_title">Vanilla & peach</h3>
+            <p class="price">28,000₩</p>
+            </div>
+            </li>
+            <li><a href="#"><img src="images/best_05.png" alt="MB메탈 차량용 디퓨저 - 헤븐리 선"></a>
+            <i class="fas fa-heart"></i>
+            <div class="con1_txtbox">
+            <h3 class="b_title">MB메탈 차량용 디퓨저 - 헤븐리 선(Resonance)</h3>
+            <p class="price">35,000₩</p>
+            </div>
+            </li>
+            <li><a href="#"><img src="images/best_06.png" alt="오로라 브론즈 + 캔들(대)세트"></a>
+            <i class="fas fa-heart"></i>
+            <div class="con1_txtbox">
+            <h3 class="b_title">오로라 브론즈 + 캔들(대)세트</h3>
+            <p class="price">89,000₩</p>
+            </div>
+            </li>
+            <li><a href="#"><img src="images/best_07.png" alt="자캔들(소) 2종세트"></a>
+            <i class="fas fa-heart"></i>
+            <div class="con1_txtbox">
+            <h3 class="b_title">자캔들(소) 2종세트</h3>
+            <p class="price">31,000₩</p>
+            </div>
+            </li>
+            <li><a href="#"><img src="images/best_08.png" alt="스타터 세트 - 클린코튼"></a>
+            <i class="fas fa-heart"></i>
+            <div class="con1_txtbox">
+            <h3 class="b_title">스타터 세트 - 클린코튼 (Clean Cotton)</h3>
+            <p class="price">30,000₩</p>
+            </div>
+            </li>
+          </ul>
+          <button class="view">view All</button>
+          </div>
+        </section>
+        <section class="con2">
+          <ul class="collection clear">
+              <li><a href="#"><img src="images/con2_05.PNG" alt="GLASS COLLECTION"></a>
+              <div class="box">
+              <h3 class="con2_title">GLASS COLLECTION</h3>
+              </div>
+              </li>
+              <li><a href="#"><img src="images/con2_06.PNG" alt="DIFFUSERS"></a>
+              <div class="box">
+              <h3 class="con2_title">DIFFUSERS</h3>
+              </div></li>
+              <li><a href="#"><img src="images/con2_08.jpg" alt="GIFT SET"></a>
+              <div class="box">
+              <h3 class="con2_title">GIFT SET</h3>
+              </div></li>
+          </ul>
+        </section>
+        <section class="con3">
+         <iframe  src="https://www.youtube.com/embed/bLQ8btaI1cs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+        <section class="con5">
+            <h3 class="shopping_title"><i class="fas fa-cubes"></i>너~무 많은 아이템,<br> <span>고르기가 힘들다면?</span></h3>
+            <h4 class="shopping_subtitle">한 눈에 볼 수 있는 <span>필터링</span>을 이용해 보세요!</h4>
+            <div class="shopping_nav">
+                <div class="shopping_left">
+                  <h5 class="shopping_list">SIZE</h5>
+                  <div class="buttons a">
+                    <button class="btn" data-key="size" data-value="large">Large</button>
+                    <button class="btn" data-key="size" data-value="medium">Medium</button>
+                    <button class="btn" data-key="size" data-value="small">Small</button>
+                  </div>
+                </div>
+                <div class="shopping_right">
+                  <h5 class="shopping_list">SCENT</h5> 
+                  <div class="buttons b">
+                    <button class="btn" data-key="scent" data-value="fruit">Fruit</button>
+                    <button class="btn" data-key="scent" data-value="fresh">Fresh</button>
+                    <button class="btn" data-key="scent" data-value="floral">Floral</button>
+                  </div>
+                </div>
+            </div>
+            <ul class="items">
+                
+            </ul>
+        </section>
+        <section class="con4">
+          <h3 class="insta">#YANKEE CANDLE</h3>
+          <ul class="con4_img clear">
+              <li>
+                <img src="images/instagram1.jpg" alt="0">
+              </li>
+              <li>
+                <img src="images/instagram2.jpg" alt="1">
+              </li>
+              <li>
+                <img src="images/instagram3.jpg" alt="2">
+              </li>
+              <li>
+                <img src="images/instagram4.jpg" alt="3">
+              </li>
+              <li>
+                <img src="images/instagram5.jpg" alt="4">
+              </li>
+          </ul>
+        </section>
+      </div>
+      <div id="sitemap">
+       <div class="inner clear">
+       <div class="right">
+         <ul class="sns clear">
+             <li><a href="https://www.facebook.com/ykcandle#!/ykcandle" target="_blank">
+               <i class="fab fa-facebook-square"></i>
+             </a></li>
+             <li><a href="https://twitter.com/yankeecandle_kr" target="_blank">
+               <i class="fab fa-twitter"></i>
+             </a></li>
+             <li><a href="https://www.youtube.com/watch?v=bLQ8btaI1cs" target="_blank">
+               <i class="fab fa-youtube"></i>
+             </a></li>
+             <li><a href="https://www.instagram.com/yankeecandle_korea/" target="_blank">
+               <i class="fab fa-instagram"></i>
+             </a></li>
+         </ul>
+        </div>
+        <div class="left">
+          <ul class="btm_menu clear">
+            <li><a href="#">회사소개</a></li>
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">개인정보처리방침</a></li>
+            <li><a href="#">매장안내</a></li>
+            <li><a href="#">오시는길</a></li>
+          </ul>
+        </div>
+        
+      </div>
+      </div>
+      <footer>
+        <div class="inner clear">
+         <h1 class="btm_logo">
+            <img src="images/btm_logo.png" alt="하단로고">
+         </h1>
+         <ul class="copy">
+          <li><a href="#">(주)아로마글로바 | 대표: 임미숙 | 사업자번호: 110-1-99275 | 통신판매업신고 : 2014-충북충주-167</a></li>
+          <li><a href="#">본사/물류센터:27465)충청북도 충주시 기업도시2로 27 (영평리 571)</a></li>
+          <li><a href="#">서울사무소: 06087) 서울시 강남구 영동대로 607, 9층(삼성동, 랜드마크타워)</a></li>
+          <li><a href="#">Copyright AromaGloba. All rights reserved.</a></li>
+         </ul>
+        </div>
+      </footer>
+  </div>
+  <div id="quick">
+         <ul class="quick_list">
+          <li>
+            <h3><a href="#"><i class="fas fa-shopping-bag"></i>장바구니</a></h3>
+          </li>
+          <li>
+            <h3><a href="#"><i class="far fa-credit-card"></i>주문내역</a></h3>
+          </li>
+          <li>
+            <h3><a href="#"><i class="fas fa-store"></i>창업센터</a></h3>
+          </li>
+          <li>
+            <h3><a href="#"><i class="fas fa-map-marker-alt"></i>오시는길</a></h3>
+          </li>
+         </ul>
+         <div id="top"><a href="#wrap">TOP</a></div>
+       </div>
+  <div id="popup">
+      <div class="modal">
+        <div class="left">
+<!--         <img src="images/instagram1.jpg" alt="0">-->        
+        <i class="fas fa-chevron-left"></i>
+         <i class="fas fa-chevron-right"></i>
+         <div class="btm">
+            <img src="images/main_logo.png" alt="로고">
+         </div>
+        </div>
+        <div class="right">
+         <div class="r_main clear">
+          <div class="thumb">
+            <img src="images/btm_logo.png" alt="">
+          </div>
+          <div class="pop_title">
+            <h3>Yankee Candle Korea</h3>
+            <p>@ykcandle</p>
+          </div>
+         </div>
+         <div class="r_sub">
+            <p>지금 양키캔들 공식몰에서
+              2021 F/W 컬렉션을 만나보세요!</p> 
+         </div>
+        </div>
+        <button class="close">X</button>
+        
+      </div>
+    </div>
+    
+</body>
+</html>
